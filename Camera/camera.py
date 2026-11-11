@@ -127,6 +127,9 @@ class DrawingCamera:
 
     def get_drawing_coordinates(self):
         return self.capture.get_points()
+    
+    def start_new_drawing(self):
+        self.capture.start_new_drawing()
 
 
 if __name__ == "__main__":
