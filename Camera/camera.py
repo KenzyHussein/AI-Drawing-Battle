@@ -90,7 +90,7 @@ class DrawingCamera:
                 # 6. Display information
                 cv2.putText(
                     frame,
-                    f"Points: {len(self.capture.all_points)}",
+                    f"Drawing ID: {self.capture.drawing_id}",
                     (10, 110),
                     cv2.FONT_HERSHEY_SIMPLEX,
                     0.7, (255, 255, 255), 2
@@ -98,8 +98,16 @@ class DrawingCamera:
 
                 cv2.putText(
                     frame,
-                    f"Strokes: {self.capture.stroke_id}",
+                    f"Points: {len(self.capture.all_points)}",
                     (10, 145),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.7, (255, 255, 255), 2
+                )
+
+                cv2.putText(
+                    frame,
+                    f"Strokes: {self.capture.stroke_id}",
+                    (10, 180),
                     cv2.FONT_HERSHEY_SIMPLEX,
                     0.7, (255, 255, 255), 2
                 )
@@ -115,7 +123,12 @@ class DrawingCamera:
                 elif key == ord("c"):
                     self.capture.clear()
                     self.detector.is_drawing = False
-                    print("Drawing cleared!")
+                    print("Current drawing buffers cleared!")
+
+                elif key == ord("n"):
+                    self.capture.start_new_drawing()
+                    self.detector.is_drawing = False
+                    print("New drawing started!")
 
                 elif key == ord("s"):
                     self.capture.save(str(self.output_path))
@@ -127,7 +140,7 @@ class DrawingCamera:
 
     def get_drawing_coordinates(self):
         return self.capture.get_points()
-    
+
     def start_new_drawing(self):
         self.capture.start_new_drawing()
 
