@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 
 
+
 def reconstruct_drawing(csv_path, drawing_id=1, canvas_size=256):
 
     df = pd.read_csv(csv_path)
@@ -36,8 +37,11 @@ def reconstruct_drawing(csv_path, drawing_id=1, canvas_size=256):
 
         for _, row in stroke.iterrows():
 
-            x = int(row["x"] * (canvas_size - 1))
-            y = int(row["y"] * (canvas_size - 1))
+            x_norm = np.clip(float(row["x"]), 0.0, 1.0)
+            y_norm = np.clip(float(row["y"]), 0.0, 1.0)
+
+            x = int(round(x_norm * (canvas_size - 1)))
+            y = int(round(y_norm * (canvas_size - 1)))
 
             points.append((x, y))
 

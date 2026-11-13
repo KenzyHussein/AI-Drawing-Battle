@@ -4,7 +4,8 @@ from drawing_processing import reconstruct_drawing, preprocess_drawing
 
 csv_path = "../Camera/drawing_coordinates.csv"
 
-original = reconstruct_drawing(csv_path)
+# original = reconstruct_drawing(csv_path)
+original = reconstruct_drawing(csv_path, drawing_id=2)
 processed = preprocess_drawing(original)
 
 print("Original shape:", original.shape)
