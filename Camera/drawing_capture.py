@@ -15,12 +15,9 @@ class DrawingCapture:
 
     def update(self, hand_landmarks, is_drawing):
 
-        # Start a new stroke when drawing begins
         if is_drawing and not self.current_stroke:
             self.stroke_id += 1
-            self.current_stroke = []
 
-        # Capture index fingertip coordinates
         if is_drawing and hand_landmarks is not None:
             index = hand_landmarks[8]
 
@@ -35,31 +32,28 @@ class DrawingCapture:
             self.current_stroke.append(point)
             self.all_points.append(point.copy())
 
-        # Finish the current stroke
         elif not is_drawing and self.current_stroke:
             self.completed_strokes.append(self.current_stroke)
             self.current_stroke = []
 
     def start_new_drawing(self):
 
-        # Finish any active stroke
         if self.current_stroke:
             self.completed_strokes.append(self.current_stroke)
             self.current_stroke = []
 
-        # Move to the next drawing
         self.drawing_id += 1
 
         print(f"Started drawing ID: {self.drawing_id}")
 
     def clear(self):
 
+        # Clear current stroke buffers only
         self.current_stroke.clear()
         self.completed_strokes.clear()
-        self.all_points.clear()
 
-        self.stroke_id = 0
-        self.drawing_id = 1
+        # Preserve all_points and IDs
+        print("Current drawing buffers cleared!")
 
     def save(self, filename="drawing_coordinates.csv"):
 
