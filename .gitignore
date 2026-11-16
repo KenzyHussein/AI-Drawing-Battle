@@ -1,9 +1,15 @@
-.venv/
+# Python & Notebooks
 __pycache__/
+*.py[cod]
 .ipynb_checkpoints/
-datasets/quickdraw/
-!datasets/quickdraw_sample/
-models/
-!models/
-!models/hand_landmarker.task
-*.pyc
+.venv/
+venv/
+
+# Datasets & Model Binaries
+datasets/quickdraw_sample/*.npy
+models/*.zip
+models/**/*.keras
+models/*.task
+
+# Temporary Runtime Data
+Camera/drawing_coordinates.csv
