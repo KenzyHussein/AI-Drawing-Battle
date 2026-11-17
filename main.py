@@ -22,20 +22,20 @@ def main():
             print("         AI DRAWING BATTLE          ")
             print("====================================")
             print(f"Total Session Score: {total_score}")
-            print("1. Mode 2: Beat the Timer (10s vs AI)")
+            print("1. Mode 2: Beat the Timer (30s vs AI)")
             print("2. Mode 3: Draw & Guess (2 Players)")
             print("3. Exit")
 
             choice = input("Select an option (1/2/3): ").strip()
 
             if choice == "1":
-                result = play_beat_the_timer(cap, pipeline, round_seconds=10)
+                result = play_beat_the_timer(cap, pipeline, round_seconds=30)
                 total_score += result["score"]
                 status = "WIN!" if result["won"] else "TIME UP!"
                 print(f"\n[{status}] Secret Word: {result['secret_word'].upper()} | +{result['score']} pts")
 
             elif choice == "2":
-                result = play_draw_and_guess(cap, pipeline, draw_seconds=15)
+                result = play_draw_and_guess(cap, pipeline, draw_seconds=30)
                 total_score += result["score"]
                 status = "CORRECT!" if result["won"] else "WRONG!"
                 print(f"\n[{status}] Word: {result['secret_word'].upper()} | Guess: {result['guess']} | +{result['score']} pts")
