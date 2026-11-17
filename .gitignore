@@ -1,9 +1,12 @@
+
 # Python & Notebooks
 __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
 .venv/
+.venv_streamlit/
 venv/
+env/
 
 # Datasets & Model Binaries
 datasets/quickdraw_sample/*.npy
@@ -11,5 +14,10 @@ models/*.zip
 models/**/*.keras
 models/*.task
 datasets/quickdraw/*.npy
+
 # Temporary Runtime Data
 Camera/drawing_coordinates.csv
+
+# Environment Variables & Secrets
+.env
+.env.*
